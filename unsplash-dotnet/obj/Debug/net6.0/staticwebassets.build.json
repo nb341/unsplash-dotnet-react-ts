@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "2Ivs2f3HVlYh9/88v0hTl7wVeUwW9A4u5HOfo2tZqAk=",
+  "Source": "unsplash-dotnet",
+  "BasePath": "_content/unsplash-dotnet",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

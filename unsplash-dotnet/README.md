@@ -1,0 +1,3 @@
+- make models for photos
+- make controller for photos
+- make crud api for photos
