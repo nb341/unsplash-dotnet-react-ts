@@ -1,4 +1,4 @@
 import { Columns } from './Columns';
 import { ImageDimension } from './ImageDimensions';
 
-export { Columns, ImageDimension };
+export type { Columns, ImageDimension };
