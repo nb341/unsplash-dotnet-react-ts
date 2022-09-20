@@ -1,16 +1,16 @@
-import { Box, Button, IconButton, Image, Input } from '@chakra-ui/react';
+import { Box, Button, Flex, IconButton, Image, Input } from '@chakra-ui/react';
 import React from 'react';
 import { FaSearch } from 'react-icons/fa';
 
 const Header = () => (
   <Box>
-    <Box>
-      <Image />
+    <Flex>
+      <Image src="" />
       <Box>
-        <Input />
-        <IconButton icon={<FaSearch />} aria-label={'submit-search'} />
+        <Input _focus={{ border: '1px solid #333', boxShadow: 'md' }} />
+        <IconButton variant={'ghost'} icon={<FaSearch />} aria-label={'submit-search'} />
       </Box>
-    </Box>
+    </Flex>
     <Button>Add a photo</Button>
   </Box>
 );
