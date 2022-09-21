@@ -22,7 +22,7 @@ export function configureLayout(
   const columns = {
     one: [],
     two: [],
-    three: [],
+    three: []
   } as Columns;
   for (let i = 0; i < links.length; i++) {
     const link = links[i];
