@@ -11,7 +11,7 @@ export function getMinColumn(col1: number, col2: number, col3: number): number {
 }
 
 export function configureLayout(
-  links: string[],
+  links: [],
   imgSize1: ImageDimension,
   imgSize2: ImageDimension
 ): Columns {

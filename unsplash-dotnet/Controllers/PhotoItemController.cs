@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using unsplash_dotnet.Data;
 using unsplash_dotnet.Models;
 
 namespace unsplash_dotnet.Controllers;
+   
     [Route("api/[controller]")]
     [ApiController]
 public class PhotoItemController : ControllerBase

@@ -1,7 +1,17 @@
-import { Box, Button, Flex, Icon, IconButton, Image, Input } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Flex,
+  Icon,
+  IconButton,
+  Image,
+  Input,
+  useColorModeValue
+} from '@chakra-ui/react';
 import React from 'react';
 import { FaSearch } from 'react-icons/fa';
 import Logo from '../../assets/my_unsplash_logo.svg';
+import ModalComponent from '../Modal/ModalComponent';
 const Header = () => (
   <Box display={'flex'} justifyContent="space-around" marginTop={'32px'}>
     <Flex>
@@ -28,16 +38,7 @@ const Header = () => (
         />
       </Box>
     </Flex>
-    <Button
-      color={'rgba(255, 255, 255, 1)'}
-      boxShadow={'0px 1px 6px rgba(0, 0, 0, 0.1)'}
-      bgColor={'rgba(61, 180, 109, 1)'}
-      fontSize={'16px'}
-      fontWeight={'700'}
-      height={'55px'}
-      width={'137px'}>
-      Add a photo
-    </Button>
+    <ModalComponent />
   </Box>
 );
 
