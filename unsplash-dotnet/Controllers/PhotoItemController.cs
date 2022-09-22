@@ -1,3 +1,4 @@
+using System.Linq;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -20,7 +21,7 @@ public class PhotoItemController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<List<PhotoItem>>> Get()
     {
-        return Ok(await _context.PhotoItems.ToListAsync());    
+        return Ok(await _context.PhotoItems.OrderByDescending(p=>p.Id).ToListAsync());    
     }
 
     [HttpGet("{id}")]
@@ -37,7 +38,7 @@ public class PhotoItemController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<PhotoItem>> CreatePhotoItem(PhotoItem photoItem)
     {
-        if(photoItem==null){
+        if(photoItem.Label.Length <= 0 && photoItem.Link.Length<=0 ){
             return BadRequest("Fields can not be empty");
         }
         _context.PhotoItems.Add(photoItem);
