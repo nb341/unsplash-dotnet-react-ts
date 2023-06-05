@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=testdb
+    ports:
+      - "5432:5432"
+#     backend:
+#         container_name: unsplash-backend
+#         build:
+#             context: ./unsplash-dotnet
+#         volumes:
+#           - ./unsplash-dotnet:/app
+#         ports:
+#             - "7170:7170"
+#         depends_on:
+#             - db
+
+#     frontend:
+#         container_name: unsplash-frontend
+#         build:
+#             context: ./unsplash-react
+#         ports:
+#             - "3000:3000"
+#         volumes:
+#             - ./unsplash-react:/app
+#             - node_modules:/app/node_modules
+#         environment:
+#             - CHOKIDAR_USEPOLLING=true
+#         tty: true
+#         stdin_open: true
+# volumes:
+#     node_modules:

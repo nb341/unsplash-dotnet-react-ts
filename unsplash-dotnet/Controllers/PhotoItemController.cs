@@ -36,7 +36,7 @@ public class PhotoItemController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<PhotoItem>> CreatePhotoItem(PhotoItem photoItem)
+    public async Task<ActionResult<PhotoItem>> Create(PhotoItem photoItem)
     {
         if(photoItem.Label.Length <= 0 && photoItem.Link.Length<=0 ){
             return BadRequest("Fields can not be empty");
@@ -48,5 +48,20 @@ public class PhotoItemController : ControllerBase
             new {id = photoItem.Id},
             photoItem
         );
+    }
+    [HttpDelete]
+    public async Task<IActionResult> Delete(int id){
+            var photo = new PhotoItem{
+                Id=id
+            };
+            try{
+            _context.Remove(photo);
+            await _context.SaveChangesAsync();
+            return Ok("photo deleted successfully");
+            }catch(DbUpdateConcurrencyException ex){
+                return NoContent();
+            }
+
+        
     }
 }

@@ -1,82 +1,93 @@
-import { Box, Image } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
-import { Columns, ImageDimension } from '../../interfaces';
-import { configureLayout } from '../../MasonryLayout/MasonryLayout';
+import { Box } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { Columns, ImageDimension, Photo } from "../../interfaces";
+import { configureLayout } from "../../MasonryLayout/MasonryLayout";
+import ImageWithOverlay from "../ImageWithOverlay/ImageWithOverlay";
 
-const Layout = () => {
+const Layout = ({ images = [] }: any) => {
   const [links, setLinks] = useState([]);
-  const [colOne, setColOne] = useState<any>([]);
-  const [colTwo, setColTwo] = useState<any>([]);
-  const [colThree, setColThree] = useState<any>([]);
+  const [colOne, setColOne] = useState<Photo[]>([]);
+  const [colTwo, setColTwo] = useState<Photo[]>([]);
+  const [colThree, setColThree] = useState<Photo[]>([]);
   const colOneImgSize = {
     width: 385,
-    height: 307
+    height: 307,
   };
   const colTwoImgSize = {
     width: 383,
-    height: 583
+    height: 583,
   };
 
   useEffect(() => {
-    fetch('https://localhost:7170/api/PhotoItem', {
-      mode: 'cors', // no-cors, *cors, same-origin
-      headers: {
-        'Access-Control-Allow-Origin': 'https://localhost:3000'
-      }
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        // setLinks(res);
-        const { one, two, three } = configureLayout(res, colOneImgSize, colTwoImgSize);
-        setColOne(one);
-        setColTwo(two);
-        setColThree(three);
-        // console.log(res);
-      })
-      .catch((err) => console.log(err + 'failed to fetch links'));
-  }, []);
+    // fetch("https://localhost:7170/api/PhotoItem", {
+    //   mode: "cors", // no-cors, *cors, same-origin
+    //   headers: {
+    //     "Access-Control-Allow-Origin": "https://localhost:3000",
+    //   },
+    // })
+    //   .then((res) => res.json())
+    //   .then((res) => {
+    //     // setLinks(res);
+    //     const { one, two, three } = configureLayout(
+    //       res,
+    //       colOneImgSize,
+    //       colTwoImgSize
+    //     );
+    //     setColOne(one);
+    //     setColTwo(two);
+    //     setColThree(three);
+    //     // console.log(res);
+    //   })
+    //   .catch((err) => console.log(err + "failed to fetch links"));
+    if (images.length > 0) {
+      const { one, two, three } = configureLayout(
+        images,
+        colOneImgSize,
+        colTwoImgSize
+      );
+      setColOne(one);
+      setColTwo(two);
+      setColThree(three);
+    }
+  }, [images]);
 
   return (
-    <Box m={'25px'} display={'flex'} justifyContent={'center'}>
-      <Box>
+    <Box display={"flex"} justifyContent={"center"}>
+      <Box marginRight={"44px"}>
         {colOne.map((link: any, i: number) => (
-          <Image
-            src={link.link}
+          <ImageWithOverlay
+            imgSrc={link.link}
             key={link.id}
-            alt={`${link.label}`}
-            height={colOneImgSize.height}
-            width={colOneImgSize.width}
-            display={'block'}
-            margin={'44px 22px'}
-            borderRadius={'16px'}
+            imgHeight={colOneImgSize.height}
+            imgWidth={colOneImgSize.width}
+            imgTitle={link.label}
+            deleteFunc={() => {}}
           />
         ))}
       </Box>
-      <Box>
+      <Box marginRight={"44px"}>
         {colTwo.map((link: any, i: number) => (
-          <Image
-            src={link.link}
+          <ImageWithOverlay
+            imgSrc={link.link}
             key={link.id}
-            alt={`${link.label}`}
-            height={colTwoImgSize.height}
-            width={colTwoImgSize.width}
-            display={'block'}
-            margin={'44px 22px'}
-            borderRadius={'16px'}
+            imgHeight={colTwoImgSize.height}
+            imgWidth={colTwoImgSize.width}
+            imgTitle={link.label}
+            deleteFunc={() => {}}
           />
         ))}
       </Box>
       <Box>
         {colThree.map((link: any, i: number) => (
-          <Image
-            display={'block'}
-            margin={'44px 22px'}
-            borderRadius={'16px'}
-            src={link.link}
+          <ImageWithOverlay
+            imgSrc={link.link}
             key={link.id}
-            alt={`${link.label}`}
-            height={i % 2 === 0 ? colOneImgSize.height : colTwoImgSize.height}
-            width={i % 2 === 0 ? colOneImgSize.width : colTwoImgSize.width}
+            imgTitle={`${link.label}`}
+            imgHeight={
+              i % 2 === 0 ? colOneImgSize.height : colTwoImgSize.height
+            }
+            imgWidth={i % 2 === 0 ? colOneImgSize.width : colTwoImgSize.width}
+            deleteFunc={() => {}}
           />
         ))}
       </Box>

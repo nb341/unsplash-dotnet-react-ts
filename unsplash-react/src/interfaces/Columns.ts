@@ -5,19 +5,7 @@ export interface Photo {
 }
 
 export interface Columns {
-  one: Array<{
-    label: string;
-    id: number;
-    link: string;
-  }>;
-  two: Array<{
-    label: string;
-    id: number;
-    link: string;
-  }>;
-  three: Array<{
-    label: string;
-    id: number;
-    link: string;
-  }>;
+  one: Photo[];
+  two: Photo[];
+  three: Photo[];
 }

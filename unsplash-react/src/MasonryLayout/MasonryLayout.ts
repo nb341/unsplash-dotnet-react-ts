@@ -1,4 +1,4 @@
-import { Columns, ImageDimension } from '../interfaces';
+import { Columns, ImageDimension } from "../interfaces";
 
 export function getMinColumn(col1: number, col2: number, col3: number): number {
   if (col1 <= col2 && col1 <= col3) {
@@ -22,7 +22,7 @@ export function configureLayout(
   const columns = {
     one: [],
     two: [],
-    three: []
+    three: [],
   } as Columns;
   for (let i = 0; i < links.length; i++) {
     const link = links[i];

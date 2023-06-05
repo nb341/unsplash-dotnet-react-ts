@@ -7,6 +7,10 @@ public class DataContext : DbContext{
      { 
         this.PhotoItems = this.Set<PhotoItem>();
      }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.UseSerialColumns();
+        }
 
     public DbSet<PhotoItem> PhotoItems{get; set;}
 }
