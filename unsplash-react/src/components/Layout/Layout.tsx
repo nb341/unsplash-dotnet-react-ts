@@ -3,18 +3,20 @@ import { useEffect, useState } from "react";
 import { Columns, ImageDimension, Photo } from "../../interfaces";
 import { configureLayout } from "../../MasonryLayout/MasonryLayout";
 import ImageWithOverlay from "../ImageWithOverlay/ImageWithOverlay";
+import { usePhotosContext } from "../../contexts/photoContext";
 
 const Layout = ({ images = [] }: any) => {
+  const { deletePhoto } = usePhotosContext();
   const [links, setLinks] = useState([]);
   const [colOne, setColOne] = useState<Photo[]>([]);
   const [colTwo, setColTwo] = useState<Photo[]>([]);
   const [colThree, setColThree] = useState<Photo[]>([]);
   const colOneImgSize = {
-    width: 385,
+    width: 381,
     height: 307,
   };
   const colTwoImgSize = {
-    width: 383,
+    width: 381,
     height: 583,
   };
 
@@ -61,7 +63,8 @@ const Layout = ({ images = [] }: any) => {
             imgHeight={colOneImgSize.height}
             imgWidth={colOneImgSize.width}
             imgTitle={link.label}
-            deleteFunc={() => {}}
+            deleteFunc={deletePhoto}
+            photoId={link.id}
           />
         ))}
       </Box>
@@ -73,7 +76,8 @@ const Layout = ({ images = [] }: any) => {
             imgHeight={colTwoImgSize.height}
             imgWidth={colTwoImgSize.width}
             imgTitle={link.label}
-            deleteFunc={() => {}}
+            deleteFunc={deletePhoto}
+            photoId={link.id}
           />
         ))}
       </Box>
@@ -87,7 +91,8 @@ const Layout = ({ images = [] }: any) => {
               i % 2 === 0 ? colOneImgSize.height : colTwoImgSize.height
             }
             imgWidth={i % 2 === 0 ? colOneImgSize.width : colTwoImgSize.width}
-            deleteFunc={() => {}}
+            deleteFunc={deletePhoto}
+            photoId={link.id}
           />
         ))}
       </Box>

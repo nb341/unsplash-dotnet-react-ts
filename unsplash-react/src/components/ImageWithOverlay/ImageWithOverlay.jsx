@@ -6,6 +6,7 @@ const ImageWithOverlay = ({
   imgWidth,
   imgTitle,
   deleteFunc,
+  photoId,
 }) => {
   return (
     <Box
@@ -54,7 +55,7 @@ const ImageWithOverlay = ({
           px={6}
           py={2}
           onClick={(e) => {
-            deleteFunc();
+            deleteFunc(photoId);
           }}
         >
           delete

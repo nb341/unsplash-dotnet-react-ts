@@ -35,21 +35,24 @@ const Header = () => {
   const [searchValue, setSearchValue] = useState("");
 
   return (
-    <Box display={"flex"} justifyContent="space-between" marginTop={"32px"}>
-      <Flex>
-        <Image src={Logo} ml={"28px"} htmlHeight={"43px"} htmlWidth={"99px"} />
-        <Box>
+    <Box display={"flex"} justifyContent="space-between">
+      <Flex alignItems={"center"}>
+        <Image src={Logo} h={"26px"} w={"128px"} />
+        <Box ml={"24px"}>
           <Box
             display={"flex"}
             position="relative"
             justifyContent={"center"}
             alignItems="center"
+            w="300px"
+            h="55px"
           >
             <Input
               type={"text"}
               height={"55px"}
               width={"300px"}
               paddingLeft={"70px"}
+              borderRadius={"12px"}
               value={searchValue}
               _focus={{
                 border: "0.5px solid rgba(189, 189, 189, 1)",

@@ -7,7 +7,7 @@ using unsplash_dotnet.Models;
 
 namespace unsplash_dotnet.Controllers;
    
-    [Route("api/[controller]")]
+    [Route("api/photos")]
     [ApiController]
 public class PhotoItemController : ControllerBase
 {

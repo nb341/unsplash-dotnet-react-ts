@@ -13,18 +13,18 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Spinner,
 } from "@chakra-ui/react";
-
-interface PhotoFrom {
+import { usePhotos } from "../../contexts/PhotoState";
+export interface PhotoForm {
   label: string;
   link: string;
 }
 
 const ModalComponent = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  // const [label, setLabel] = useState('');
-  // const [photoUrl, setPhotoUrl] = useState('');
-  const initialValues: PhotoFrom = {
+  const [state, addPhoto] = usePhotos();
+  const initialValues: PhotoForm = {
     label: "",
     link: "",
   };
@@ -46,21 +46,7 @@ const ModalComponent = () => {
     // for (const value of data) {
     //   console.log(value);
     // }
-
-    fetch("https://localhost:7170/api/PhotoItem", {
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "https://localhost:3000",
-      },
-      mode: "cors", // no-cors, *cors, same-origin
-      method: "POST",
-      body: JSON.stringify(formValues),
-    })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => console.log(err));
+    addPhoto(formValues);
   };
   return (
     <>
@@ -181,8 +167,9 @@ const ModalComponent = () => {
                 boxShadow={"0px 1px 6px rgba(0, 0, 0, 0.1)"}
                 colorScheme="green"
                 type="submit"
+                disabled={state.isLoading}
               >
-                Submit
+                {state.isLoading ? <Spinner /> : "Submit"}
               </Button>
             </ModalFooter>
           </chakra.form>
